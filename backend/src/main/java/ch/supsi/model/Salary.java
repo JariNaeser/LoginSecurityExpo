@@ -11,12 +11,11 @@ import java.util.Date;
 @Getter
 @Setter
 @AllArgsConstructor
-@EqualsAndHashCode(of = {"id"}) @ToString
 @Entity
 public class Salary {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private double amount;
     private Date start;
