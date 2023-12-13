@@ -49,5 +49,9 @@ public class UserService implements ServiceInterface<User, Integer>{
         return userRepository.findAll();
     }
 
+    public Optional<User> findByUsername(String username){
+        return this.userRepository.findByUsername(username);
+    }
+
 }
 

@@ -3,8 +3,6 @@ package ch.supsi.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Random;
-
 @Getter
 @Setter
 @AllArgsConstructor
@@ -20,10 +18,12 @@ public class User {
     @Column(unique=true)
     private String username;
     private String password;
-    private String salt;
+    //private String salt;
     private double salary;
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
 
-    @PrePersist
+    /*@PrePersist
     void generateSalt(){
         Random r = new Random();
         String alphabet = "1234567890abcdefghilmnopqrstuvzABCDEFGHILMNOPQRTSTUVZjJkKxX-_!?$£";
@@ -35,5 +35,5 @@ public class User {
         }
 
         this.salt = sb.toString();
-    }
+    }*/
 }

@@ -3,10 +3,7 @@ package ch.supsi.controller;
 import ch.supsi.model.User;
 import ch.supsi.service.UserService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -37,4 +34,9 @@ public class MainController {
         this.userService.post(user);
         return user;
     }
+
+    /*@PostMapping("/login")
+    public void login(@RequestBody CredentialsDto credentials){
+        System.out.println(credentials);
+    }*/
 }
