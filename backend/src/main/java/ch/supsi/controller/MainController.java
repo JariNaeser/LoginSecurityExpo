@@ -1,8 +1,6 @@
 package ch.supsi.controller;
 
-import ch.supsi.model.Salary;
 import ch.supsi.model.User;
-import ch.supsi.service.SalaryService;
 import ch.supsi.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,12 +13,9 @@ import java.util.Optional;
 
 @Controller
 public class MainController {
-
-    private final SalaryService salaryService;
     private final UserService userService;
 
-    public MainController(SalaryService salaryService, UserService userService) {
-        this.salaryService = salaryService;
+    public MainController(UserService userService) {
         this.userService = userService;
     }
 
@@ -34,13 +29,6 @@ public class MainController {
     @ResponseBody
     public Optional<User> getUser(@PathVariable int id){
         return this.userService.get(id);
-    }
-
-    @PostMapping("/salary/new")
-    @ResponseBody
-    public Salary newSalary(Salary salary){
-        this.salaryService.post(salary);
-        return salary;
     }
 
     @PostMapping("/user/new")

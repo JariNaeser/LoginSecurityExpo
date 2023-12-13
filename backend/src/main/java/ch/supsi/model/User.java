@@ -18,15 +18,5 @@ public class User {
     @Column(unique=true)
     private String username;
     private String password;
-    @OneToOne
-    private Salary salary;
-
-    public User(String username, String password, String name, String surname, Salary salary){
-        this.username = username;
-        this.password = password;
-        this.name = name;
-        this.surname = surname;
-        this.salary = salary;
-    }
-
+    private double salary;
 }
