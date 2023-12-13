@@ -7,6 +7,7 @@
     <div class="row">
         <div class="col-md-6">
             <h3>About</h3>
+            <br>
             <p>
                 The scope of this little project is to secure the communication between a client and a server.
                 The technologies used to achieve this are the following:
@@ -21,6 +22,7 @@
         </div>
         <div class="col-md-6">
             <h3>Endpoints</h3>
+            <br>
         <div>
             <table class="table table-responsive">
                 <tr>
@@ -47,24 +49,19 @@
                         <pre>/user/new</pre>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <p>Create a new salary</p>
-                    </td>
-                    <td>
-                        <pre>/salary/new</pre>
-                    </td>
-                </tr>
             </table>
         </div>
     </div>
+    <br>
     <hr>
     <br>
     <h3>Usage</h3>
+    <br>
+    <br>
     <p>
         This application does not have many functionalities as it's intended to display how such a secure system works.
         Its usage is simple, a registered <b>user</b> can view the data relatative to himself including his salary. 
-        Only an <b>accountant</b> can see the data of every registered user.
+        Only an <b>admin</b> can see the data of every registered user.
     </p>
     <div class="text-center">
         <a [routerLink]="['/login']" type="button" class="btn btn-primary col-md-6">Go to login</a>

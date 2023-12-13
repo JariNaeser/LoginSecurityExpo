@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-4"></div>
         <main class="form-signin col-md-4">
-            <form>
+            <form (ngSubmit)="login()">
                 <h1 class="h3 mb-3 fw-normal">Please log in</h1>
                 <small style="color: gray;">
                     If you don't have an account, try with:<br>
@@ -16,17 +16,17 @@
                 <br>
                 <br>
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="floatingInput" placeholder="Username">
+                    <input [(ngModel)]="username" name="username" type="text" class="form-control" id="floatingInput" placeholder="Username">
                     <label for="floatingInput">Username</label>
                 </div>
                 <div class="form-floating">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                    <input [(ngModel)]="password" name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
                     <label for="floatingPassword">Password</label>
                 </div>
             
                 <button class="w-100 btn btn-lg btn-primary" type="submit">Log in</button>
                 <p class="text-muted" style="padding: 1em;">SUPSI © 2023</p>
-                <small style="color: red;" id="loginErrorMessage">Error</small>
+                <small style="color: red;" id="loginErrorMessage">{{ loginResponse }}</small>
             </form>
         </main>
     </div>

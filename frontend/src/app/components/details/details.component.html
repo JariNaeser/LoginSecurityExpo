@@ -1,25 +1,65 @@
 <div class="col-md-12 container">
     <br>
-    <h3>Registered users</h3>
+    <h3>Your info</h3>
+    <br>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <table class="table table-user-information">
+                <tbody>
+                    <tr>
+                        <td>ID</td>
+                        <td>{{this.id}}</td>
+                    </tr>
+                    <tr>
+                        <td>Username</td>
+                        <td>{{this.username}}</td>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td>{{this.name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Surname</td>
+                        <td>{{this.surname}}</td>
+                    </tr>
+                    <tr>
+                        <td>Salary</td>
+                        <td>{{this.salary}} $</td>
+                    </tr>
+                    <tr>
+                        <td>Role</td>
+                        <td>{{this.role}}</td>
+                    </tr>
+                </tbody>
+            </table> 
+        </div>
+    </div>
+    <br>
+    <hr>
+    <br>
+    <h3>All registered users</h3>
     <br>
     <table class="table table-responsive">
         <thead>
             <tr>
+                <th>ID</th>
                 <th>Username</th>
                 <th>Name</th>
                 <th>Surname</th>
                 <th>Salary</th>
-                <th>View more</th>
+                <th>Role</th>
             </tr>
         </thead>
         <tbody>
-            <!-- <tr *ngFor="let user of userData">
+            <tr *ngFor="let user of this.userData">
+                <td>{{user.id}}</td>
                 <td>{{user.username}}</td>
                 <td>{{user.name}}</td>
                 <td>{{user.surname}}</td>
-                <td>{{user.salary}}</td>
-                <td>...</td>
-            </tr> -->
+                <td>{{user.salary}} $</td>
+                <td>{{user.role}}</td>
+            </tr>
         </tbody>
         <tr></tr>
     </table>
