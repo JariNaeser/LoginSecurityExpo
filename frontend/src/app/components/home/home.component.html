@@ -4,71 +4,106 @@
     <br>
     <hr>
     <br>
-    <div class="row">
-        <div class="col-md-6">
-            <h3>About</h3>
-            <br>
-            <p>
-                The scope of this little project is to secure the communication between a client and a server.
-                The technologies used to achieve this are the following:
-            </p>
-            <ul>
-                <li>Angular (frontend)</li>
-                <li>Java Spring MVC (backend)</li>
-                <li>MySQL (Database)</li>
-                <li>JWT (authentication)</li>
-                <li>HTTPS + Certificates (communication encryption)</li>
-            </ul>
-        </div>
-        <div class="col-md-6">
-            <h3>Endpoints</h3>
-            <br>
-        <div>
-            <table class="table table-responsive">
-                <tr>
-                    <td>
-                        <p>Data of all users</p>
-                    </td>
-                    <td>
-                        <pre>/user/all</pre>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>Data of single user specified by its id</p>
-                    </td>
-                    <td>
-                        <pre>/user/id</pre>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>Create a new user</p>
-                    </td>
-                    <td>
-                        <pre>/user/new</pre>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </div>
-    <br>
-    <hr>
-    <br>
     <h3>Usage</h3>
     <br>
     <br>
     <p>
         This application does not have many functionalities as it's intended to display how such a secure system works.
-        Its usage is simple, a registered <b>user</b> can view the data relatative to himself including his salary. 
+        Its usage is simple, a registered <b>user</b> can view the data relatative to himself including his salary.
         Only an <b>admin</b> can see the data of every registered user.
     </p>
     <div class="text-center">
         <a [routerLink]="['/login']" type="button" class="btn btn-primary col-md-6">Go to login</a>
     </div>
-
     <br>
+    <hr>
     <br>
+    <h3>About</h3>
     <br>
-    
+    <p>
+        The scope of this little project is to secure the communication between a client and a server.
+        The technologies used to achieve this are the following:
+    </p>
+    <ul>
+        <li>Angular (frontend)</li>
+        <li>Java Spring MVC (backend)</li>
+        <li>MySQL (Database)</li>
+        <li>JWT (authentication)</li>
+        <li>HTTPS + Certificates (communication encryption)</li>
+    </ul>
+    <br>
+    <hr>
+    <br>
+    <h3>Endpoints</h3>
+    <br>
+    <div>
+        <table class="table table-responsive">
+            <tr>
+                <th class="col-md-4">Description</th>
+                <th class="col-md-4">Path</th>
+                <th class="col-md-2"></th>
+                <th class="col-md-2">Accessible by</th>
+            </tr>
+            <tr>
+                <td>
+                    <p>Data of all users</p>
+                </td>
+                <td>
+                    <pre>/user/all</pre>
+                </td>
+                <td></td>
+                <td>
+                    <p>Admin</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Data of single user specified by its id</p>
+                </td>
+                <td>
+                    <pre>/user/:id</pre>
+                </td>
+                <td></td>
+                <td>
+                    <p>User & Admin</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Create a new user</p>
+                </td>
+                <td>
+                    <pre>/user/new</pre>
+                </td>
+                <td></td>
+                <td>
+                    <p>Admin</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Login</p>
+                </td>
+                <td>
+                    <pre>/login</pre>
+                </td>
+                <td></td>
+                <td>
+                    <p>Everyone</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Logout</p>
+                </td>
+                <td>
+                    <pre>/logout</pre>
+                </td>
+                <td></td>
+                <td>
+                    <p>Everyone</p>
+                </td>
+            </tr>
+        </table>
+    </div>
 </div>

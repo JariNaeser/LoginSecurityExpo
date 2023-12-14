@@ -3,7 +3,6 @@ import ch.supsi.model.Token;
 import ch.supsi.model.User;
 import io.jsonwebtoken.*;
 import jakarta.xml.bind.DatatypeConverter;
-import org.springframework.security.core.context.SecurityContextHolder;
 
 import javax.crypto.spec.SecretKeySpec;
 import java.security.Key;
