@@ -8,14 +8,13 @@ import ch.supsi.util.JwtUtil;
 import ch.supsi.util.PasswordHelper;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Optional;
 
-@Controller
+@RestController
 public class MainController {
     private final UserService userService;
 
