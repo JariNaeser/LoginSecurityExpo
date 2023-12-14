@@ -19,10 +19,14 @@ export class DetailsComponent implements OnInit {
 	public role:string = "NO_ROLE";
 	public userData:Array<any> | undefined;
 	public userDataFetchFail:string = '';
+	public userIsAdmin:boolean = false;
 
   	constructor(private userService : UserService, private authService : AuthService) { }
 
   	ngOnInit(): void {
+
+		this.userIsAdmin = this.authService.getUserType() === "ROLE_ADMIN";
+
 		this.userService.getUserData(this.authService.getUserId()).subscribe(data => {
 			//Success
 			this.userDataFetchFail = '';

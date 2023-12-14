@@ -37,31 +37,33 @@
         </div>
     </div>
     <br>
-    <hr>
-    <br>
-    <h3>All registered users</h3>
-    <br>
-    <table class="table table-responsive">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Username</th>
-                <th>Name</th>
-                <th>Surname</th>
-                <th>Salary</th>
-                <th>Role</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let user of this.userData">
-                <td>{{user.id}}</td>
-                <td>{{user.username}}</td>
-                <td>{{user.name}}</td>
-                <td>{{user.surname}}</td>
-                <td>{{user.salary}} $</td>
-                <td>{{user.role}}</td>
-            </tr>
-        </tbody>
-        <tr></tr>
-    </table>
+    <div *ngIf="this.userIsAdmin">
+        <hr>
+        <br>
+        <h3>All registered users</h3>
+        <br>
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Salary</th>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of this.userData">
+                    <td>{{user.id}}</td>
+                    <td>{{user.username}}</td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.surname}}</td>
+                    <td>{{user.salary}} $</td>
+                    <td>{{user.role}}</td>
+                </tr>
+            </tbody>
+            <tr></tr>
+        </table>
+    </div>
 </div>
