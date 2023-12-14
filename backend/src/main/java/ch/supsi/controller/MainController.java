@@ -65,7 +65,7 @@ public class MainController {
             // Check if passwords match
             if(user.get().getPassword().equals(PasswordHelper.encrypt(credentials.getPassword(), user.get().getSalt()))){
                 // Logged in successfully, generate Token
-                return JwtUtil.generateToken(credentials.getUsername());
+                return JwtUtil.generateToken(user.get());
             }
         }
 
