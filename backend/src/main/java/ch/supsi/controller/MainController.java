@@ -1,6 +1,7 @@
 package ch.supsi.controller;
 
 import ch.supsi.model.Credentials;
+import ch.supsi.model.Token;
 import ch.supsi.model.User;
 import ch.supsi.model.UserDTO;
 import ch.supsi.service.UserService;
@@ -57,7 +58,7 @@ public class MainController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody Credentials credentials) throws NoSuchAlgorithmException {
+    public Token login(@RequestBody Credentials credentials) throws NoSuchAlgorithmException {
         Optional<User> user = this.userService.findByUsername(credentials.getUsername());
 
         if(user.isPresent()){
