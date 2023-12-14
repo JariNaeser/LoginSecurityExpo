@@ -22,8 +22,7 @@ export class LoginComponent implements OnInit {
   login(){
     this.loginService.login(this.username, this.password).subscribe(data => {
       //Set token
-      console.log("Logged in")
-      localStorage.setItem(environment.TOKEN_NAME, data);
+      localStorage.setItem(environment.TOKEN_NAME, data.token);
       //Redirect to profile or whatever page
       this.router.navigate(['/details']);
     }, error => {

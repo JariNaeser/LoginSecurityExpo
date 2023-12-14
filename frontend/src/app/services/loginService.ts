@@ -17,7 +17,7 @@ export class LoginService{
             environment.serverIP + "login",
             {
                 "username": username,
-                "password": this.passwordEncrypterService.encrypt(password)
+                "password": password
             }
         )
     }
