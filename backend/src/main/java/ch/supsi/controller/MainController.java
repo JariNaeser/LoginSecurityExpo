@@ -33,7 +33,13 @@ public class MainController {
     @GetMapping("/user/{id}")
     @Secured("ROLE_USER")
     @ResponseBody
-    public UserDTO getUser(@PathVariable int id){
+    public UserDTO getUser(@PathVariable int id, @RequestHeader("Authorization") String token){
+
+        int tokenId = JwtUtil.extractId(getTokenValue(token));
+
+        //Verify if user is requesting its own data or data from another user
+        if(tokenId != id) throw new AccessDeniedException("403 Forbidden");
+
         Optional<User> user = this.userService.get(id);
 
         if(user.isPresent()){
@@ -70,5 +76,13 @@ public class MainController {
         }
 
         throw new AccessDeniedException("401 Unauthorized");
+    }
+
+    private String getTokenValue(String token){
+        if(token.contains("Bearer ")){
+            String[] splitted = token.split(" ");
+            if(splitted.length == 2) return splitted[1];
+        }
+        return "";
     }
 }

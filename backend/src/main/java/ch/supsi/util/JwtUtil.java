@@ -3,6 +3,7 @@ import ch.supsi.model.Token;
 import ch.supsi.model.User;
 import io.jsonwebtoken.*;
 import jakarta.xml.bind.DatatypeConverter;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import javax.crypto.spec.SecretKeySpec;
 import java.security.Key;
@@ -45,6 +46,19 @@ public class JwtUtil {
                 .setSigningKey(SECRET)
                 .parseClaimsJws(token)
                 .getBody().getSubject();
+    }
+
+    public static int extractId(String token) {
+        Claims claims = Jwts.parser()
+                .setSigningKey(SECRET)
+                .parseClaimsJws(token)
+                .getBody();
+
+        if(claims.containsKey("userId")){
+            return (int) claims.get("userId");
+        }
+
+        return -1;
     }
 
     public static boolean validateToken(String token){
