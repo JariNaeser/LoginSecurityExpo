@@ -2,13 +2,9 @@ package ch.supsi.controller;
 
 import ch.supsi.model.User;
 import ch.supsi.service.UserService;
-import ch.supsi.utils.JwtUtil;
-import ch.supsi.utils.PasswordEncrypter;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,19 +35,8 @@ public class MainController {
         return user;
     }
 
-    @PostMapping("/login")
-    public String login(@RequestBody Credentials credentials) throws NoSuchAlgorithmException {
-        // Check if user exists
-        Optional<User> user = this.userService.findByUsername(credentials.getUsername());
-
-        if(user.isPresent()){
-            // Check if password is right
-            if(user.get().getPassword().equals(PasswordEncrypter.encrypt(credentials.getPassword()))){
-                // Success, generate and return new Token
-                return JwtUtil.generateToken(credentials.getUsername());
-            }
-        }
-
-        throw new AccessDeniedException("401 Unauthorized");
-    }
+    /*@PostMapping("/login")
+    public void login(@RequestBody CredentialsDto credentials){
+        System.out.println(credentials);
+    }*/
 }
