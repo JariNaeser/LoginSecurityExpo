@@ -2,6 +2,7 @@ package ch.supsi.controller;
 
 import ch.supsi.model.Credentials;
 import ch.supsi.model.User;
+import ch.supsi.model.UserDTO;
 import ch.supsi.service.UserService;
 import ch.supsi.util.JwtUtil;
 import ch.supsi.util.PasswordHelper;
@@ -25,23 +26,35 @@ public class MainController {
     @GetMapping("/user/all")
     @Secured("ROLE_ADMIN")
     @ResponseBody
-    public List<User> getUsers(){
-        return this.userService.getAll();
+    public List<UserDTO> getUsers(){
+        return this.userService.getAll().stream().map(UserDTO::user2DTO).toList();
     }
 
     @GetMapping("/user/{id}")
     @Secured("ROLE_USER")
     @ResponseBody
-    public Optional<User> getUser(@PathVariable int id){
-        return this.userService.get(id);
+    public UserDTO getUser(@PathVariable int id){
+        Optional<User> user = this.userService.get(id);
+
+        if(user.isPresent()){
+            return UserDTO.user2DTO(user.get());
+        }
+
+        throw new AccessDeniedException("404 Not Found");
     }
 
     @PostMapping("/user/new")
-    @Secured("ROLE_ADMIN")
+    //@Secured("ROLE_ADMIN")
     @ResponseBody
-    public User newUser(User user){
+    public UserDTO newUser(User user) throws NoSuchAlgorithmException {
+        // Generate salt
+        user.setSalt(PasswordHelper.getGeneratedSalt());
+        // Hash password
+        user.setPassword(PasswordHelper.encrypt(user.getPassword(), user.getSalt()));
+        // Save new user
         this.userService.post(user);
-        return user;
+
+        return UserDTO.user2DTO(user);
     }
 
     @PostMapping("/login")
