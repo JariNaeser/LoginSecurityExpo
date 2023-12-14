@@ -44,7 +44,16 @@ public class JwtUtil {
         return Jwts.parser()
                 .setSigningKey(SECRET)
                 .parseClaimsJws(token)
-                .getBody()
-                .getSubject();
+                .getBody().getSubject();
+    }
+
+    public static boolean validateToken(String token){
+        try{
+            // If following checks would fail, an exception would be thrown.
+            // signature, malformed token, expired token, unsupported token and compact handler.
+            Jwts.parser().setSigningKey(SECRET).parseClaimsJws(token);
+            return true;
+        }catch (Exception ignored){}
+        return false;
     }
 }
