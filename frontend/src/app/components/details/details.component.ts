@@ -1,5 +1,6 @@
 import { identifierName } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/userService';
 
 @Component({
@@ -17,18 +18,22 @@ export class DetailsComponent implements OnInit {
 	public username:string = "NO_USERNAME";
 	public role:string = "NO_ROLE";
 	public userData:Array<any> | undefined;
+	public userDataFetchFail:string = '';
 
-  	constructor(private userService : UserService) { }
+  	constructor(private userService : UserService, private authService : AuthService) { }
 
   	ngOnInit(): void {
-		this.userService.getUserData(1).subscribe(data => {
+		this.userService.getUserData(this.authService.getUserId()).subscribe(data => {
 			//Success
+			this.userDataFetchFail = '';
 			this.id = data.id;
 			this.name = data.name;
 			this.salary = data.salary;
 			this.surname = data.surname;
 			this.username = data.username;
 			this.role = data.role;
+		}, error => {
+			this.userDataFetchFail = 'Failed to fetch data from the server.';
 		});   
 		
 		this.userService.getAllUsersData().subscribe(data => {

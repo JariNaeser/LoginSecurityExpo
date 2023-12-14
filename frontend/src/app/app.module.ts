@@ -14,6 +14,8 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './services/auth.service';
 import { TokenInterceptor } from './interceptor/tokenInterceptor';
+import { CanActivateGuard } from './guards/canActivateGuard';
+import { CanActivateAdminGuard } from './guards/canActivateAdminGuard';
 
 // Routes
 const appRoutes: Routes = [
@@ -36,7 +38,7 @@ const appRoutes: Routes = [
   { 
     path: 'details', 
     component: DetailsComponent, 
-    //canActivate: [CanActivateAdminGuard] 
+    canActivate: [CanActivateGuard] 
   },
   { 
     path: '**', 
@@ -72,7 +74,9 @@ const appRoutes: Routes = [
       useClass: TokenInterceptor,
       multi: true
     },
-    AuthService
+    AuthService,
+    CanActivateGuard,
+    CanActivateAdminGuard
   ],
   bootstrap: [AppComponent]
 })

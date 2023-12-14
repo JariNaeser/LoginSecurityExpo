@@ -44,7 +44,7 @@ public class MainController {
     }
 
     @PostMapping("/user/new")
-    //@Secured("ROLE_ADMIN")
+    @Secured("ROLE_ADMIN")
     @ResponseBody
     public UserDTO newUser(User user) throws NoSuchAlgorithmException {
         // Generate salt

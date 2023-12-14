@@ -2,7 +2,10 @@ package ch.supsi.util;
 import ch.supsi.model.Token;
 import ch.supsi.model.User;
 import io.jsonwebtoken.*;
+import jakarta.xml.bind.DatatypeConverter;
 
+import javax.crypto.spec.SecretKeySpec;
+import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,16 +16,25 @@ public class JwtUtil {
     private static final long EXPIRATION_TIME = 86_400_000; // 1 day
 
     public static Token generateToken(User user) {
+        // Create signature keys
+        SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
+        byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(SECRET);
+        Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
 
+        // Create payload data
         Map<String, Object> claims = new HashMap<>();
         claims.put("userType", user.getRole());
         claims.put("userId", user.getId());
 
+        // Generate token
         String token = Jwts.builder()
                 .setSubject(user.getUsername())
                 .addClaims(claims)
+                .setHeaderParam("typ", "JWT")
+                .setIssuedAt(new Date())
+                .setIssuer("LoginSecurityExpoBackend")
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
-                .signWith(SignatureAlgorithm.HS512, SECRET)
+                .signWith(signatureAlgorithm, signingKey)
                 .compact();
 
         return new Token(token);
