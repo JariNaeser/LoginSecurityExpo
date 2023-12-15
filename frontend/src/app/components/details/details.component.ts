@@ -17,9 +17,12 @@ export class DetailsComponent implements OnInit {
 	public surname:string = "NO_SURNAME";
 	public username:string = "NO_USERNAME";
 	public role:string = "NO_ROLE";
-	public userData:Array<any> | undefined;
+	public usersData:Array<any> | undefined;
 	public userDataFetchFail:string = '';
+	public usersDataFetchFail:string = '';
 	public userIsAdmin:boolean = false;
+	public userDataLoadedSuccessfully:boolean = false;
+	public usersDataLoadedSuccessfully:boolean = false;
 
   	constructor(private userService : UserService, private authService : AuthService) { }
 
@@ -29,6 +32,7 @@ export class DetailsComponent implements OnInit {
 
 		this.userService.getUserData(this.authService.getUserId()).subscribe(data => {
 			//Success
+			this.userDataLoadedSuccessfully = true;
 			this.userDataFetchFail = '';
 			this.id = data.id;
 			this.name = data.name;
@@ -37,11 +41,17 @@ export class DetailsComponent implements OnInit {
 			this.username = data.username;
 			this.role = data.role;
 		}, error => {
+			this.userDataLoadedSuccessfully = false;
 			this.userDataFetchFail = 'Failed to fetch data from the server.';
 		});   
 		
 		this.userService.getAllUsersData().subscribe(data => {
-			this.userData = data;
+			this.usersDataLoadedSuccessfully = true;
+			this.usersDataFetchFail = '';
+			this.usersData = data;
+		}, error => {
+			this.usersDataLoadedSuccessfully = false;
+			this.usersDataFetchFail = 'Failed to fetch data from the server.';
 		});
   	}
 

@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
-            <table class="table table-user-information">
+            <table class="table table-user-information" *ngIf="this.userDataLoadedSuccessfully">
                 <tbody>
                     <tr>
                         <td>ID</td>
@@ -43,7 +43,7 @@
         <br>
         <h3>All registered users</h3>
         <br>
-        <table class="table table-responsive">
+        <table class="table table-responsive" *ngIf="this.usersDataLoadedSuccessfully">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -55,7 +55,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let user of this.userData">
+                <tr *ngFor="let user of this.usersData">
                     <td>{{user.id}}</td>
                     <td>{{user.username}}</td>
                     <td>{{user.name}}</td>
@@ -64,7 +64,7 @@
                     <td>{{user.role}}</td>
                 </tr>
             </tbody>
-            <tr></tr>
         </table>
+        <p class="text-center text-danger">{{userDataFetchFail}}</p>
     </div>
 </div>
